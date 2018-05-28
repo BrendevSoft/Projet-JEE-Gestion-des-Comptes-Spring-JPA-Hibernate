@@ -7,28 +7,26 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("CC")
-public class CompteCourant extends Compte{
+public class CompteCourant extends Compte {
 
-	private double decouvert;
+    private double decouvert;
 
-	public double getDecouvert() {
-		return decouvert;
-	}
+    public double getDecouvert() {
+        return decouvert;
+    }
 
-	public void setDecouvert(double decouvert) {
-		this.decouvert = decouvert;
-	}
+    public void setDecouvert(double decouvert) {
+        this.decouvert = decouvert;
+    }
 
-	public CompteCourant() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public CompteCourant() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public CompteCourant(String codeCompte, Date dateCreation, double solde, Client client, double decouvert) {
-		super(codeCompte, dateCreation, solde, client);
-		this.decouvert = decouvert;
-	}
-	
-	
-	
+    public CompteCourant(String codeCompte, Date dateCreation, double solde, Client client, double decouvert, Agence agence, Personnel personnel) {
+        super(codeCompte, dateCreation, solde, client, agence, personnel);
+        this.decouvert = decouvert;
+    }
+
 }

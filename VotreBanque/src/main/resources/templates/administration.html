@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorator="template1">
+    <head>
+        <meta charset="utf-8" />
+        <title>Administration</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="col-md-12" align='center'>
+                <div class="panel-heading">Gestion des agences</div>
+                <div class="col-md-4" align='center'>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Ajouter une agence</div>
+                        <form th:action="@{/newperson}" method="POST" th:object="${personBean}" class="form-horizontal">
+                            <div class="panel-body">
+
+                                <div >
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-3 control-lable">Nom</label>
+                                            <div class="col-md-7">
+                                                <input type="text" th:field="*{nom}" placeholder="Nom"
+                                                       class="form-control"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-3 control-lable">Prenom</label>
+                                            <div class="col-md-7">
+                                                <input type="text" th:field="*{prenom}" placeholder="Prenom"
+                                                       class="form-control"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-3 control-lable">Téléphone</label>
+                                            <div class="col-md-7">
+                                                <input type="text" th:field="*{num_tel}" placeholder="Téléphone"
+                                                       class="form-control"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-3 control-lable">Adresse</label>
+                                            <div class="col-md-7">
+                                                <input type="text" th:field="*{adresse}" placeholder="Adresse"
+                                                       class="form-control" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <input type="submit" value="Enrégister" class="btn btn-primary btn-sm"/>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Liste des agences</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered"  cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Nom</th>                            
+                                    <th>Adresse</th>
+                                    <th>Téléphone</th>
+                                    <th>Fax</th>
+                                </tr>
+                                <tr th:each="o:${agences}">
+                                    <td th:text="${o.typeAgence}"></td>
+                                    <td th:text="${o.nomAgence}"></td>
+                                    <td th:text="${o.adresse}"></td>
+                                    <td th:text="${o.numTel}"></td>
+                                    <td th:text="${o.fax}"></td>
+
+                                </tr>
+
+                            </table>
+                            <div class="container">
+                                <ul class="nav nav-pills">
+                                    <li th:each="p,status:${pages1}"><a
+                                            th:href="@{/administration(page=${status.index})}"
+                                            th:text="${status.index}"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12" align='center'>
+
+                <div class="panel-heading">Gestion du personnel</div>
+                <div class="col-md-4" align='center'>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Ajouter un Personnel</div>
+                        <form th:action="@{/newperson}" method="POST" th:object="${personBean}" class="form-horizontal">
+                            <div class="panel-body">
+
+                                <div >
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-3 control-lable">Nom</label>
+                                            <div class="col-md-7">
+                                                <input type="text" th:field="*{nom}" placeholder="Nom"
+                                                       class="form-control"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-3 control-lable">Prenom</label>
+                                            <div class="col-md-7">
+                                                <input type="text" th:field="*{prenom}" placeholder="Prenom"
+                                                       class="form-control"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-3 control-lable">Téléphone</label>
+                                            <div class="col-md-7">
+                                                <input type="text" th:field="*{num_tel}" placeholder="Téléphone"
+                                                       class="form-control"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-3 control-lable">Adresse</label>
+                                            <div class="col-md-7">
+                                                <input type="text" th:field="*{adresse}" placeholder="Adresse"
+                                                       class="form-control" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <input type="submit" value="Enrégister" class="btn btn-primary btn-sm"/>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Liste comptes utilisateurs</div>
+                        <div class="panel-body">
+                            <table class="table table-bordered"  cellpadding="0" cellspacing="0" border="0" id="example">
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Adresse</th>
+                                    <th>Telephone</th>
+                                    <th>Agence</th>
+                                </tr>
+                                <tr th:each="o:${users}">
+                                    <td th:text="${o.username}"></td>
+                                    <td th:text="${o.idPersonnel.nom}"></td>
+                                    <td th:text="${o.idPersonnel.prenom}"></td>
+                                    <td th:text="${o.idPersonnel.adresse}"></td>
+                                    <td th:text="${o.idPersonnel.numTel}"></td>
+                                    <td th:text="${o.idPersonnel.idAgence.nomAgence}"></td>
+                                </tr>
+
+                            </table>
+                            <div class="container">
+                                <ul class="nav nav-pills">
+                                    <li th:each="p,status:${pages}"><a
+                                            th:href="@{/personnels(page=${status.index})}"
+                                            th:text="${status.index}"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>

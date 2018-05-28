@@ -9,26 +9,24 @@ import javax.persistence.Entity;
 @DiscriminatorValue("CE")
 public class CompteEpargne extends Compte {
 
-	
-	private double taux;
+    private double taux;
 
-	public double getTaux() {
-		return taux;
-	}
+    public double getTaux() {
+        return taux;
+    }
 
-	public void setTaux(double taux) {
-		this.taux = taux;
-	}
+    public void setTaux(double taux) {
+        this.taux = taux;
+    }
 
-	public CompteEpargne() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public CompteEpargne() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public CompteEpargne(String codeCompte, Date dateCreation, double solde, Client client, double taux) {
-		super(codeCompte, dateCreation, solde, client);
-		this.taux = taux;
-	}
-	
-	
+    public CompteEpargne(String codeCompte, Date dateCreation, double solde, Client client, double taux, Agence agence, Personnel personnel) {
+        super(codeCompte, dateCreation, solde, client, agence, personnel);
+        this.taux = taux;
+    }
+
 }

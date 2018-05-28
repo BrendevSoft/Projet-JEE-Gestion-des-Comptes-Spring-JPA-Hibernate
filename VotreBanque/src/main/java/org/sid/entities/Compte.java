@@ -13,80 +13,103 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+import javax.persistence.Temporal;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="TYPE_CPTE",discriminatorType=DiscriminatorType.STRING,length=2 )
-public abstract class Compte implements Serializable{
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE_CPTE", discriminatorType = DiscriminatorType.STRING)
+public class Compte implements Serializable {
 
-	@Id
-	private String codeCompte;
-	private Date dateCreation;
-	private double solde;
-	
-	@ManyToOne
-	@JoinColumn(name="CODE_CLI")
-	private Client client;
-	
-	@OneToMany(mappedBy="compte")
-	private Collection<Operation> operations;
+    @Id
+    private String codeCompte;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateCreation;
+    private double solde;
 
-	public Compte(String codeCompte, Date dateCreation, double solde, Client client) {
-		super();
-		this.codeCompte = codeCompte;
-		this.dateCreation = dateCreation;
-		this.solde = solde;
-		this.client = client;
-	}
+    @ManyToOne
+    @JoinColumn(name = "code")
+    private Client client;
 
-	public Compte() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    @ManyToOne
+    @JoinColumn(name = "id_agence")
+    private Agence agence;
 
-	public String getCodeCompte() {
-		return codeCompte;
-	}
+    @ManyToOne
+    @JoinColumn(name = "id_personnel")
+    private Personnel personnel;
 
-	public void setCodeCompte(String codeCompte) {
-		this.codeCompte = codeCompte;
-	}
+    @OneToMany(mappedBy = "compte")
+    private Collection<Operation> operations;
 
-	public Date getDateCreation() {
-		return dateCreation;
-	}
+    public Compte(String codeCompte, Date dateCreation, double solde, Client client, Agence agence, Personnel perspnnel) {
+        super();
+        this.codeCompte = codeCompte;
+        this.dateCreation = dateCreation;
+        this.solde = solde;
+        this.client = client;
+        this.agence = agence;
+        this.personnel = perspnnel;
+    }
 
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
+    public Compte() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public double getSolde() {
-		return solde;
-	}
+    public String getCodeCompte() {
+        return codeCompte;
+    }
 
-	public void setSolde(double solde) {
-		this.solde = solde;
-	}
+    public void setCodeCompte(String codeCompte) {
+        this.codeCompte = codeCompte;
+    }
 
-	public Client getClient() {
-		return client;
-	}
+    public Date getDateCreation() {
+        return dateCreation;
+    }
 
-	public void setClient(Client client) {
-		this.client = client;
-	}
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
 
-	public Collection<Operation> getOperations() {
-		return operations;
-	}
+    public double getSolde() {
+        return solde;
+    }
 
-	public void setOperations(Collection<Operation> operations) {
-		this.operations = operations;
-	}
+    public void setSolde(double solde) {
+        this.solde = solde;
+    }
 
+    public Client getClient() {
+        return client;
+    }
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
-	
-	
+    public Collection<Operation> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(Collection<Operation> operations) {
+        this.operations = operations;
+    }
+
+    public Agence getAgence() {
+        return agence;
+    }
+
+    public void setAgence(Agence agence) {
+        this.agence = agence;
+    }
+
+    public Personnel getPersonnel() {
+        return personnel;
+    }
+
+    public void setPersonnel(Personnel personnel) {
+        this.personnel = personnel;
+    }
+
 }
